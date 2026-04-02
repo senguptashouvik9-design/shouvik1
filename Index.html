@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>adidas — Impossible Is Nothing</title>
+<style>
+  :root {
+    --black: #000000;
+    --white: #ffffff;
+    --grey-100: #f5f5f5;
+    --grey-200: #e8e8e8;
+    --grey-300: #d4d4d4;
+    --grey-400: #a0a0a0;
+    --grey-600: #666666;
+    --grey-800: #222222;
+    --accent: #ff0033;
+    --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-main);
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--white);
+    border-bottom: 1px solid var(--grey-200);
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .logo {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    text-transform: lowercase;
+    color: var(--black);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  nav {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  nav a {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    position: relative;
+    transition: color var(--transition);
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--black);
+    transition: width var(--transition);
+  }
+
+  nav a:hover::after { width: 100%; }
+
+  .header-icons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: var(--black);
+    transition: opacity var(--transition);
+    display: flex;
+    align-items: center;
+  }
+
+  .icon-btn:hover { opacity: 0.5; }
+
+  .icon-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: calc(100vh - 60px);
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, #1a1a1a 0%, transparent 70%),
+      linear-gradient(135deg, #000 0%, #111 50%, #000 100%);
+  }
+
+  .hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-stripe {
+    position: absolute;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-15deg);
+    display: flex;
+    gap: 20px;
+    opacity: 0.06;
+  }
+
+  .hero-stripe span {
+    display: block;
+    width: 80px;
+    height: 600px;
+    background: var(--white);
+    border-radius: 40px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--grey-400);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-size: clamp(52px, 9vw, 140px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 32px;
+    max-width: 900px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--grey-400);
+    margin-bottom: 48px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .btn-primary {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--white);
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--white);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border-color: rgba(255,255,255,0.3);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--white);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .btn-outline-dark {
+    background: transparent;
+    color: var(--black);
+    border-color: var(--black);
+  }
+
+  .btn-outline-dark:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  /* ===== TRUST METRICS ===== */
+  .trust {
+    background: var(--grey-100);
+    padding: 60px 24px;
+    border-bottom: 1px solid var(--grey-200);
+  }
+
+  .trust-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--grey-200);
+  }
+
+  .trust-item {
+    background: var(--grey-100);
+    padding: 40px 32px;
+    text-align: center;
+  }
+
+  .trust-num {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .trust-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--grey-600);
+  }
+
+  /* ===== SECTION HEADERS ===== */
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    gap: 16px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--grey-400);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .section-link {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    white-space: nowrap;
+    transition: opacity var(--transition);
+    flex-shrink: 0;
+  }
+
+  .section-link:hover { opacity: 0.5; }
+
+  /* ===== PRODUCTS ===== */
+  .products {
+    padding: 80px 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .product-card {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .product-img-wrap {
+    position: relative;
+    background: var(--grey-100);
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .product-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: 20px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .product-card:hover .product-img-wrap img {
+    transform: scale(1.06);
+  }
+
+  .product-card:hover .product-img-wrap {
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+  }
+
+  .product-badge.sale { background: var(--accent); }
+
+  .wishlist-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    background: var(--white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: all var(--transition);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  }
+
+  .product-card:hover .wishlist-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .wishlist-btn svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--black);
+    fill: none;
+    stroke-width: 2;
+    transition: fill var(--transition);
+  }
+
+  .wishlist-btn:hover svg { fill: var(--accent); stroke: var(--accent); }
+
+  .product-info { padding: 0 2px; }
+
+  .product-category {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey-400);
+    margin-bottom: 4px;
+  }
+
+  .product-name {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .product-price {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .price-current {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .price-original {
+    font-size: 13px;
+    color: var(--grey-400);
+    text-decoration: line-through;
+  }
+
+  .price-off {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .product-colors {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+  }
+
+  .color-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid var(--grey-200);
+    cursor: pointer;
+    transition: border-color var(--transition);
+  }
+
+  .color-dot:hover { border-color: var(--black); }
+
+  /* ===== CATEGORY GRID ===== */
+  .categories {
+    padding: 0 24px 80px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .cat-card {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--grey-800);
+  }
+
+  .cat-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.85;
+  }
+
+  .cat-card:hover img {
+    transform: scale(1.08);
+    opacity: 0.7;
+  }
+
+  .cat-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+  }
+
+  .cat-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 6px;
+  }
+
+  .cat-name {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .cat-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    padding-bottom: 2px;
+    transition: border-color var(--transition);
+    width: fit-content;
+  }
+
+  .cat-cta:hover { border-color: var(--white); }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials {
+    background: var(--black);
+    padding: 80px 24px;
+  }
+
+  .testimonials .section-title { color: var(--white); }
+  .testimonials .section-eyebrow { color: var(--grey-600); }
+
+  .testimonials-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .testimonials .section-header { margin-bottom: 48px; }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .testi-card {
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 40px 32px;
+    transition: border-color var(--transition), background var(--transition);
+  }
+
+  .testi-card:hover {
+    border-color: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .testi-quote {
+    font-size: 32px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 16px;
+    font-weight: 900;
+  }
+
+  .testi-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .testi-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--grey-800);
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.1);
+  }
+
+  .testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  .testi-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.04em;
+  }
+
+  .testi-role {
+    font-size: 11px;
+    color: var(--grey-600);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .testi-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 20px;
+  }
+
+  .testi-stars span {
+    color: #ffd700;
+    font-size: 14px;
+  }
+
+  /* ===== LOCATIONS ===== */
+  .locations {
+    padding: 80px 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .location-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--grey-200);
+    margin-bottom: 40px;
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    padding: 12px 28px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    cursor: pointer;
+    color: var(--grey-400);
+    transition: all var(--transition);
+    white-space: nowrap;
+  }
+
+  .tab-btn.active {
+    color: var(--black);
+    border-bottom-color: var(--black);
+  }
+
+  .tab-btn:hover { color: var(--black); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .location-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .location-img {
+    aspect-ratio: 4/3;
+    background: var(--grey-100);
+    overflow: hidden;
+  }
+
+  .location-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .location-info { padding: 20px 0; }
+
+  .location-city {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .location-country {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--grey-400);
+    margin-bottom: 24px;
+  }
+
+  .location-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .location-row {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+  }
+
+  .location-row-label {
+    font-weight: 700;
+    width: 90px;
+    flex-shrink: 0;
+    color: var(--grey-600);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .location-row-val { line-height: 1.5; }
+
+  /* ===== FORM ===== */
+  .form-section {
+    background: var(--grey-100);
+    padding: 80px 24px;
+  }
+
+  .form-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .form-inner .section-eyebrow { display: block; margin-bottom: 8px; }
+  .form-inner .section-title { margin-bottom: 12px; }
+
+  .form-desc {
+    font-size: 15px;
+    color: var(--grey-600);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  .lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+
+  .form-group label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--grey-600);
+  }
+
+  .form-group input {
+    padding: 14px 16px;
+    background: var(--white);
+    border: 1.5px solid var(--grey-200);
+    font-family: var(--font-main);
+    font-size: 14px;
+    outline: none;
+    transition: border-color var(--transition);
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus { border-color: var(--black); }
+
+  .form-group input::placeholder { color: var(--grey-300); }
+
+  .btn-submit {
+    background: var(--black);
+    color: var(--white);
+    border: 2px solid var(--black);
+    padding: 16px 40px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--transition);
+    font-family: var(--font-main);
+    margin-top: 8px;
+    width: 100%;
+  }
+
+  .btn-submit:hover {
+    background: transparent;
+    color: var(--black);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--black);
+    padding: 64px 24px 32px;
+    color: var(--white);
+  }
+
+  .footer-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 32px;
+  }
+
+  .footer-brand .logo {
+    color: var(--white);
+    font-size: 28px;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .footer-tagline {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.6;
+    max-width: 280px;
+    margin-bottom: 24px;
+  }
+
+  .footer-socials { display: flex; gap: 12px; }
+
+  .social-link {
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all var(--transition);
+  }
+
+  .social-link:hover {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--white);
+  }
+
+  .footer-col h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .footer-col a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .footer-col a:hover { color: var(--white); }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-legal a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .footer-legal a:hover { color: rgba(255,255,255,0.7); }
+
+  /* ===== FLOATING ELEMENTS ===== */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 52px;
+    height: 52px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    transition: transform var(--transition), box-shadow var(--transition);
+    text-decoration: none;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+  }
+
+  .whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--white);
+  }
+
+  .mobile-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 998;
+    background: var(--black);
+    padding: 16px 24px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+
+  .mobile-cta a {
+    display: block;
+    background: var(--white);
+    color: var(--black);
+    text-align: center;
+    padding: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+
+  /* ===== BANNER STRIP ===== */
+  .promo-strip {
+    background: var(--black);
+    padding: 10px 0;
+    overflow: hidden;
+  }
+
+  .promo-track {
+    display: flex;
+    gap: 60px;
+    animation: marquee 20s linear infinite;
+    width: max-content;
+  }
+
+  .promo-strip span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    white-space: nowrap;
+  }
+
+  .promo-strip .dot {
+    color: var(--accent);
+    font-size: 16px;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1200px) {
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  }
+
+  @media (max-width: 900px) {
+    nav { display: none; }
+    .trust-inner { grid-template-columns: repeat(2, 1fr); }
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .testi-grid { grid-template-columns: 1fr 1fr; }
+    .location-card { grid-template-columns: 1fr; gap: 24px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-brand { grid-column: span 2; }
+    .mobile-cta { display: block; }
+    .whatsapp-float { bottom: 90px; }
+  }
+
+  @media (max-width: 600px) {
+    .trust-inner { grid-template-columns: repeat(2, 1fr); }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .cat-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero h1 { letter-spacing: -0.03em; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .section-header { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 380px) {
+    .product-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PROMO STRIP -->
+<div class="promo-strip">
+  <div class="promo-track">
+    <span>Free shipping on orders over ₹4,999</span>
+    <span class="dot">✦</span>
+    <span>New Season Collection Now Live</span>
+    <span class="dot">✦</span>
+    <span>Up to 50% Off Sale Items</span>
+    <span class="dot">✦</span>
+    <span>Free Returns · 30 Day Policy</span>
+    <span class="dot">✦</span>
+    <span>Free shipping on orders over ₹4,999</span>
+    <span class="dot">✦</span>
+    <span>New Season Collection Now Live</span>
+    <span class="dot">✦</span>
+    <span>Up to 50% Off Sale Items</span>
+    <span class="dot">✦</span>
+    <span>Free Returns · 30 Day Policy</span>
+    <span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">adidas</a>
+    <nav>
+      <a href="#">Men</a>
+      <a href="#">Women</a>
+      <a href="#">Sports</a>
+      <a href="#">Originals</a>
+      <a href="#" style="color:var(--accent)">Sale</a>
+    </nav>
+    <div class="header-icons">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Cart" style="position:relative">
+        <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span style="position:absolute;top:0;right:0;width:16px;height:16px;background:var(--black);color:var(--white);font-size:9px;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;">3</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-stripe">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">SS 2025 Collection</div>
+    <h1>Impossible<br>Is <em>Nothing</em></h1>
+    <p class="hero-sub">Performance meets everyday style.<br>Built for athletes. Worn by everyone.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn btn-primary">Shop Men</a>
+      <a href="#" class="btn btn-secondary">Shop Women</a>
+      <a href="#" class="btn btn-secondary">Explore Collection</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-num">€23B+</div>
+      <div class="trust-label">Annual Revenue</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">75+</div>
+      <div class="trust-label">Years of Innovation</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">160+</div>
+      <div class="trust-label">Countries Worldwide</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">500M+</div>
+      <div class="trust-label">Athletes Trust Adidas</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">New Arrivals</div>
+      <h2 class="section-title">Featured Products</h2>
+    </div>
+    <a href="#" class="section-link">View All →</a>
+  </div>
+
+  <div class="product-grid">
+
+    <!-- Product 1 -->
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <span class="product-badge">New</span>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/68ae7ea7849b43eca70aac1e00f5146d_9366/Ultraboost_Light_Running_Shoes_White_HQ6351_01_standard.jpg" alt="Ultraboost Light" loading="lazy">
+      </div>
+      <div class="product-info">
+        <div class="product-category">Running Shoes</div>
+        <div class="product-name">Ultraboost Light</div>
+        <div class="product-price">
+          <span class="price-current">₹19,999</span>
+        </div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#ffffff;border-color:#ccc"></div>
+          <div class="color-dot" style="background:#1a1a2e"></div>
+          <div class="color-dot" style="background:#c9a96e"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <span class="product-badge sale">Sale</span>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/47f2af1b8f4748c5b5e5acfd00b8c6d2_9366/Adicolor_Classics_3-Stripes_T-Shirt_White_H37793_21_model.jpg" alt="Adicolor T-Shirt" loading="lazy">
+      </div>
+      <div class="product-info">
+        <div class="product-category">T-Shirt</div>
+        <div class="product-name">Adicolor Classics 3-Stripes Tee</div>
+        <div class="product-price">
+          <span class="price-current">₹2,499</span>
+          <span class="price-original">₹3,499</span>
+          <span class="price-off">-30%</span>
+        </div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#ffffff;border-color:#ccc"></div>
+          <div class="color-dot" style="background:#000000"></div>
+          <div class="color-dot" style="background:#1565C0"></div>
+          <div class="color-dot" style="background:#2E7D32"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/02e0f3b66e9543b3843aad2600de7ed6_9366/Tiro_23_League_Shorts_Black_HS3591_21_model.jpg" alt="Tiro Shorts" loading="lazy">
+      </div>
+      <div class="product-info">
+        <div class="product-category">Shorts</div>
+        <div class="product-name">Tiro 23 League Shorts</div>
+        <div class="product-price">
+          <span class="price-current">₹2,799</span>
+        </div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#000000"></div>
+          <div class="color-dot" style="background:#1565C0"></div>
+          <div class="color-dot" style="background:#4a4a4a"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <span class="product-badge">Bestseller</span>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/c04a6fc5264a43ddb42aad0d009a3e91_9366/Stan_Smith_Shoes_White_FX5502_01_standard.jpg" alt="Stan Smith" loading="lazy">
+      </div>
+      <div class="product-info">
+        <div class="product-category">Originals Sneakers</div>
+        <div class="product-name">Stan Smith</div>
+        <div class="product-price">
+          <span class="price-current">₹8,999</span>
+        </div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#ffffff;border-color:#ccc"></div>
+          <div class="color-dot" style="background:#1B5E20"></div>
+          <div class="color-dot" style="background:#1565C0"></div>
+          <div class="color-dot" style="background:#B71C1C"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <span class="product-badge sale">Sale</span>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/a1dc3f07a91f4e4fa7e7ab98017f8ae1_9366/Runfalcon_3.0_Shoes_Black_HP7544_01_standard.jpg" alt="Runfalcon" loading="lazy">
+      </div>
+      <div class="product-info">
+        <div class="product-category">Running Shoes</div>
+        <div class="product-name">Runfalcon 3.0</div>
+        <div class="product-price">
+          <span class="price-current">₹4,999</span>
+          <span class="price-original">₹6,999</span>
+          <span class="price-off">-28%</span>
+        </div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#000000"></div>
+          <div class="color-dot" style="background:#ffffff;border-color:#ccc"></div>
+          <div class="color-dot" style="background:#37474F"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/c18d2fec625a4b8b858aad7200b3dc5a_9366/Essentials_3-Stripes_Open_Hem_Fleece_Pants_Black_H44108_21_model.jpg" alt="Fleece Pants" loading="lazy">
+      </div>
+      <div class="product-info">
+        <div class="product-category">Women's Apparel</div>
+        <div class="product-name">Essentials 3-Stripes Fleece Pants</div>
+        <div class="product-price">
+          <span class="price-current">₹4,499</span>
+        </div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#000000"></div>
+          <div class="color-dot" style="background:#E0E0E0"></div>
+          <div class="color-dot" style="background:#4A148C"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 7 -->
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <span class="product-badge">New</span>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f7d5e07f1fa24a2790cfac310073e3be_9366/Superstar_Shoes_White_EG4958_01_standard.jpg" alt="Superstar" loading="lazy">
+      </div>
+      <div class="product-info">
+        <div class="product-category">Originals Sneakers</div>
+        <div class="product-name">Superstar</div>
+        <div class="product-price">
+          <span class="price-current">₹9,999</span>
+        </div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#ffffff;border-color:#ccc"></div>
+          <div class="color-dot" style="background:#000000"></div>
+          <div class="color-dot" style="background:#c9a96e"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 8 -->
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <span class="product-badge sale">-40%</span>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/2e9cf5a6261244d4b0e3ae90010dcd4f_9366/Adilette_Aqua_Slides_Black_F35543_01_standard.jpg" alt="Adilette Slides" loading="lazy">
+      </div>
+      <div class="product-info">
+        <div class="product-category">Slides</div>
+        <div class="product-name">Adilette Aqua Slides</div>
+        <div class="product-price">
+          <span class="price-current">₹1,799</span>
+          <span class="price-original">₹2,999</span>
+          <span class="price-off">-40%</span>
+        </div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#000000"></div>
+          <div class="color-dot" style="background:#ffffff;border-color:#ccc"></div>
+          <div class="color-dot" style="background:#1565C0"></div>
+          <div class="color-dot" style="background:#C62828"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Shop By Sport</div>
+      <h2 class="section-title">Categories</h2>
+    </div>
+    <a href="#" class="section-link">View All →</a>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/4d2b0eed1bd148b58f37ad820103ed23_9366/Predator_Accuracy.1_Firm_Ground_Boots_Black_GZ0038_01_00_standard.jpg" alt="Football">
+      <div class="cat-overlay">
+        <div class="cat-label">Category</div>
+        <div class="cat-name">Football</div>
+        <a href="#" class="cat-cta">Shop Now →</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/06498d7fd06c40e789a6acb100f5e0e7_9366/Ultraboost_Light_Running_Shoes_Black_GZ5159_01_standard.jpg" alt="Running">
+      <div class="cat-overlay">
+        <div class="cat-label">Category</div>
+        <div class="cat-name">Running</div>
+        <a href="#" class="cat-cta">Shop Now →</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f95f87b7ea5d4c908a7eacfd00b84ddb_9366/Techfit_3-Stripes_Training_Tights_Black_HN9956_21_model.jpg" alt="Training">
+      <div class="cat-overlay">
+        <div class="cat-label">Category</div>
+        <div class="cat-name">Training</div>
+        <a href="#" class="cat-cta">Shop Now →</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/0c1af7fb7be744e3b33aacfa00b840d9_9366/Samba_OG_Shoes_White_B75806_01_standard.jpg" alt="Originals">
+      <div class="cat-overlay">
+        <div class="cat-label">Category</div>
+        <div class="cat-name">Originals</div>
+        <a href="#" class="cat-cta">Shop Now →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">What They Say</div>
+        <h2 class="section-title" style="color:var(--white)">Athlete Stories</h2>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="testi-text">The Ultraboost changed the way I train. Every morning run feels like I'm gliding. The energy return is unlike anything I've worn before — my PB dropped by 4 minutes this season.</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://i.pravatar.cc/100?img=32" alt="Arjun M."></div>
+          <div>
+            <div class="testi-name">Arjun Mehta</div>
+            <div class="testi-role">Marathon Runner · Mumbai</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="testi-text">I've been wearing Adidas on the pitch since I was 16. The Predator boots give me the grip and precision I need. It's not just gear — it's confidence on the field.</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://i.pravatar.cc/100?img=15" alt="Priya S."></div>
+          <div>
+            <div class="testi-name">Priya Sharma</div>
+            <div class="testi-role">Football Player · Delhi</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="testi-text">From the gym to the streets, Adidas Originals is my daily uniform. The Stan Smiths go with literally everything. Quality that lasts, style that never goes out of fashion.</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://i.pravatar.cc/100?img=54" alt="Rahul K."></div>
+          <div>
+            <div class="testi-name">Rahul Kapoor</div>
+            <div class="testi-role">Fitness Coach · Bangalore</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="locations">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Find A Store</div>
+      <h2 class="section-title">Our Locations</h2>
+    </div>
+  </div>
+
+  <div class="location-tabs">
+    <button class="tab-btn active" data-tab="mumbai">Mumbai</button>
+    <button class="tab-btn" data-tab="delhi">Delhi</button>
+    <button class="tab-btn" data-tab="bangalore">Bangalore</button>
+    <button class="tab-btn" data-tab="international">International</button>
+  </div>
+
+  <div class="tab-content active" id="tab-mumbai">
+    <div class="location-card">
+      <div class="location-img">
+        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80" alt="Mumbai Store">
+      </div>
+      <div class="location-info">
+        <div class="location-city">Mumbai</div>
+        <div class="location-country">Maharashtra, India</div>
+        <div class="location-detail">
+          <div class="location-row">
+            <div class="location-row-label">Address</div>
+            <div class="location-row-val">Infiniti Mall, Andheri West<br>Mumbai — 400053</div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-label">Hours</div>
+            <div class="location-row-val">Mon – Sun: 10:00 AM – 10:00 PM</div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-label">Phone</div>
+            <div class="location-row-val">+91 22 4000 1234</div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-label">Services</div>
+            <div class="location-row-val">Customisation · Running Lab · Returns</div>
+          </div>
+        </div>
+        <a href="#form" class="btn btn-outline-dark">Book an Experience</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-delhi">
+    <div class="location-card">
+      <div class="location-img">
+        <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&q=80" alt="Delhi Store">
+      </div>
+      <div class="location-info">
+        <div class="location-city">Delhi</div>
+        <div class="location-country">New Delhi, India</div>
+        <div class="location-detail">
+          <div class="location-row">
+            <div class="location-row-label">Address</div>
+            <div class="location-row-val">DLF Mall of India, Sector 18<br>Noida — 201301</div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-label">Hours</div>
+            <div class="location-row-val">Mon – Sun: 10:00 AM – 10:00 PM</div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-label">Phone</div>
+            <div class="location-row-val">+91 11 4000 5678</div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-label">Services</div>
+            <div class="location-row-val">Football Zone · Custom Jerseys · Returns</div>
+          </div>
+        </div>
+        <a href="#form" class="btn btn-outline-dark">Book an Experience</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-bangalore">
+    <div class="location-card">
+      <div class="location-img">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80" alt="Bangalore Store">
+      </div>
+      <div class="location-info">
+        <div class="location-city">Bangalore</div>
+        <div class="location-country">Karnataka, India</div>
+        <div class="location-detail">
+          <div class="location-row">
+            <div class="location-row-label">Address</div>
+            <div class="location-row-val">UB City Mall, Vittal Mallya Rd<br>Bangalore — 560001</div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-label">Hours</div>
+            <div class="location-row-val">Mon – Sun: 10:00 AM – 9:30 PM</div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-label">Phone</div>
+            <div class="location-row-val">+91 80 4000 9012</div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-label">Services</div>
+            <div class="location-row-val">Running Lab · Tech Wear · Exchange</div>
+          </div>
+        </div>
+        <a href="#form" class="btn btn-outline-dark">Book an Experience</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-international">
+    <div class="location-card">
+      <div class="location-img">
+        <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=800&q=80" alt="International Store">
+      </div>
+      <div class="location-info">
+        <div class="location-city">Global HQ</div>
+        <div class="location-country">Herzogenaurach, Germany</div>
+        <div class="location-detail">
+          <div class="location-row">
+            <div class="location-row-label">Address</div>
+            <div class="location-row-val">Adi-Dassler-Strasse 1<br>91074 Herzogenaurach, Germany</div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-label">Hours</div>
+            <div class="location-row-val">Mon – Fri: 9:00 AM – 6:00 PM CET</div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-label">Phone</div>
+            <div class="location-row-val">+49 9132 84-0</div>
+          </div>
+          <div class="location-row">
+            <div class="location-row-label">Stores</div>
+            <div class="location-row-val">160+ Countries · 2,500+ Retail Locations</div>
+          </div>
+        </div>
+        <a href="#form" class="btn btn-outline-dark">Locate a Store</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="form">
+  <div class="form-inner">
+    <span class="section-eyebrow">Exclusive Access</span>
+    <h2 class="section-title">Book Your Experience</h2>
+    <p class="form-desc">Get personalised product recommendations, exclusive member offers, and priority access to new drops.</p>
+    <form class="lead-form" onsubmit="return false;">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">Full Name</label>
+          <input type="text" id="fname" placeholder="e.g. Rahul Sharma">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="you@example.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91 98765 43210">
+      </div>
+      <button class="btn-submit" type="submit">Book Your Experience →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">adidas</a>
+        <p class="footer-tagline">Through sport, we have the power to change lives. Impossible Is Nothing.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="Instagram">IG</a>
+          <a href="#" class="social-link" aria-label="Twitter">TW</a>
+          <a href="#" class="social-link" aria-label="Facebook">FB</a>
+          <a href="#" class="social-link" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Adidas</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Investors</a></li>
+          <li><a href="#">Sustainability</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Track My Order</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Store Locator</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Cookie Settings</a></li>
+          <li><a href="#">Accessibility</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 adidas AG. All rights reserved. Herzogenaurach, Germany.</div>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta">
+  <a href="#">Shop Now →</a>
+</div>
+
+<script>
+  // Location tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const tab = this.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      this.classList.add('active');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+
+  // Wishlist toggle
+  document.querySelectorAll('.wishlist-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const svg = this.querySelector('svg');
+      const filled = svg.getAttribute('fill') === 'currentColor';
+      svg.setAttribute('fill', filled ? 'none' : 'currentColor');
+      svg.style.stroke = filled ? 'var(--black)' : 'var(--accent)';
+      svg.style.fill = filled ? 'none' : 'var(--accent)';
+    });
+  });
+
+  // Sticky header shadow on scroll
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 20) {
+      header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+    } else {
+      header.style.boxShadow = 'none';
+    }
+  });
+</script>
+</body>
+</html>
